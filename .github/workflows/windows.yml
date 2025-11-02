@@ -76,7 +76,7 @@ jobs:
       matrix:
         # Needed for MSVC toolset 14.2
         os: [windows-2019]
-        python-version: ['3.9', '3.10', '3.11', '3.12', '3.13']
+        python-version: ['3.9', '3.10', '3.11', '3.12', '3.13', '3.14']
         boost-version: [1.84.0]
         boost-version-snake: ['1_84_0']
     steps:
