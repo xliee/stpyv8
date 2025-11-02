@@ -12,7 +12,7 @@ jobs:
     # Cloning the repository is still necessary in any case
     # to calculate the hash for the cache key
     name: Build Google V8
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     outputs:
       v8-hash: ${{ steps.build-v8.outputs.v8-hash }}
     steps:
@@ -63,7 +63,7 @@ jobs:
       STPYV8_BOOST_PYTHON: boost_python${{ matrix.python-version }}
     strategy:
       matrix:
-        os: [ubuntu-20.04]
+        os: [ubuntu-22.04]
         python-version: ['3.9', '3.10', '3.11', '3.12', '3.13', '3.14']
         boost-version: [1.87.0]
         boost-version-snake: ['1_87_0']
