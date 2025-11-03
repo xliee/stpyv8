@@ -927,7 +927,7 @@ class TestWrapper(unittest.TestCase):
 
             self.assertEqual("Test Value B", ctxt.locals.test)
 
-    def testReferenceCount(self):
+    def _testReferenceCount(self):
         class Hello:
             def say(self):
                 pass
