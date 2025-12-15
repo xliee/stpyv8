@@ -7,7 +7,7 @@ DEPOT_HOME = os.environ.get("DEPOT_HOME", os.path.join(STPYV8_HOME, "depot_tools
 V8_HOME = os.environ.get("V8_HOME", os.path.join(STPYV8_HOME, "v8"))
 
 V8_GIT_URL = "https://chromium.googlesource.com/v8/v8.git"
-V8_GIT_TAG_STABLE = "13.1.201.22"
+V8_GIT_TAG_STABLE = "14.3.127.16"
 V8_GIT_TAG_MASTER = "master"
 V8_GIT_TAG = V8_GIT_TAG_STABLE
 DEPOT_GIT_URL = "https://chromium.googlesource.com/chromium/tools/depot_tools.git"
@@ -20,14 +20,17 @@ os.environ["PATH"] = f"{os.environ.get('PATH', '')}:{DEPOT_HOME}"
 
 gn_args = {
     "dcheck_always_on": "false",
+    "enable_rust": "false",
     "is_component_build": "false",
     "is_debug": "true" if os.environ.get("STPYV8_DEBUG") else "false",
     "treat_warnings_as_errors": "false",
+    "use_clang_modules": "false",
     "use_custom_libcxx": "false",
     "v8_deprecation_warnings": "true",
     "v8_enable_disassembler": "false",
     "v8_enable_i18n_support": "true",
     "v8_enable_pointer_compression": "false",
+    "v8_enable_temporal_support": "false",
     "v8_enable_31bit_smis_on_64bit_arch": "false",
     "v8_imminent_deprecation_warnings": "true",
     "v8_monolithic": "true",
@@ -127,7 +130,7 @@ if os.name in ("nt",):
 
 elif os.name in ("posix",):
     libraries = [
-        "boost_system",
+        # "boost_system",
         "boost_iostreams",
         "boost_filesystem",
         "v8_monolith",

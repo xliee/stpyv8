@@ -83,16 +83,18 @@ void CContext::Expose(void)
 
 CContext::CContext(v8::Handle<v8::Context> context)
 {
-    v8::HandleScope handle_scope(v8::Isolate::GetCurrent());
+    v8::Isolate* isolate = v8::Isolate::GetCurrent();
+    v8::HandleScope handle_scope(isolate);
 
-    m_context.Reset(context->GetIsolate(), context);
+    m_context.Reset(isolate, context);
 }
 
 CContext::CContext(const CContext& context)
 {
-    v8::HandleScope handle_scope(v8::Isolate::GetCurrent());
+    v8::Isolate* isolate = v8::Isolate::GetCurrent();
+    v8::HandleScope handle_scope(isolate);
 
-    m_context.Reset(context.Handle()->GetIsolate(), context.Handle());
+    m_context.Reset(isolate, context.Handle());
 }
 
 CContext::CContext(py::object global)
