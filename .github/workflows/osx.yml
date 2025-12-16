@@ -15,9 +15,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-15]
-    env:
-      ARCH: x86_64
+        os: [macos-15-intel]
     outputs:
       v8-hash: ${{ steps.build-v8.outputs.v8-hash }}
     steps:
@@ -65,12 +63,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-15]
+        os: [macos-15-intel]
         python-version: ['3.9', '3.10', '3.11', '3.12', '3.13', '3.14']
         boost-version: [1.90.0]
         boost-version-snake: ['1_90_0']
-    env:
-      ARCH: x86_64
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
