@@ -8,7 +8,7 @@ on:
     branches: [master]
 env:
   BOOST_ROOT: boost
-  MSVC_TOOLSET_VERSION: 14.2
+  # MSVC_TOOLSET_VERSION: 14.2
 jobs:
   build-v8:
     # If Google V8 is in the workflow cache, don't build it.
@@ -40,11 +40,11 @@ jobs:
             v8\out.gn\x64.release.sample\icudtl.dat
             v8\include
           key: windows-build-v8-${{ hashFiles('v8/src/**') }}
-      - name: Initialize MSVC environment
-        uses: ilammy/msvc-dev-cmd@v1
-        if: ${{ steps.restore-v8.outputs.cache-hit != 'true' }}
-        with:
-          toolset: 14.2
+      # - name: Initialize MSVC environment
+      # uses: ilammy/msvc-dev-cmd@v1
+      #  if: ${{ steps.restore-v8.outputs.cache-hit != 'true' }}
+      #  with:
+      #    toolset: 14.2
       - name: Build Google V8
         id: build-v8
         if: ${{ steps.restore-v8.outputs.cache-hit != 'true' }}
@@ -74,11 +74,11 @@ jobs:
       DIST_NAME: stpyv8-windows-py${{ matrix.python-version }}
     strategy:
       matrix:
-        # Needed for MSVC toolset 14.2
-        os: [windows-2019]
+        os: [windows-latest]
+        platform: [x64]
         python-version: ['3.9', '3.10', '3.11', '3.12', '3.13', '3.14']
-        boost-version: [1.84.0]
-        boost-version-snake: ['1_84_0']
+        boost-version: [1.90.0]
+        boost-version-snake: ['1_90_0']
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -93,11 +93,11 @@ jobs:
         with:
           path: ${{ env.BOOST_ROOT }}\stage\lib
           key: boost-${{ matrix.boost-version }}-python${{ matrix.python-version }}-vc142
-      - name: Initialize MSVC environment
-        uses: ilammy/msvc-dev-cmd@v1
-        if: ${{ steps.restore-boost.outputs.cache-hit != 'true' }}
-        with:
-          toolset: ${{ env.MSVC_TOOLSET_VERSION }}
+      #- name: Initialize MSVC environment
+      #  uses: ilammy/msvc-dev-cmd@v1
+      #  if: ${{ steps.restore-boost.outputs.cache-hit != 'true' }}
+      #  with:
+      #    toolset: ${{ env.MSVC_TOOLSET_VERSION }}
       - name: Download Boost
         if: ${{ steps.restore-boost.outputs.cache-hit != 'true' }}
         id: download-boost
