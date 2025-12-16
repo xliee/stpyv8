@@ -37,6 +37,9 @@ gn_args = {
     "v8_use_external_startup_data": "false",
 }
 
+if platform.system() in ("Linux",):
+    gn_args["use_sysroot"] = "false"
+
 source_files = [
     "Exception.cpp",
     "Platform.cpp",
