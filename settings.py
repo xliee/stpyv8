@@ -38,7 +38,7 @@ gn_args = {
 }
 
 if platform.system() in ("Linux",):
-    gn_args["use_sysroot"] = "false"
+    gn_args["is_clang"] = "false"
 
 source_files = [
     "Exception.cpp",
