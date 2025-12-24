@@ -38,7 +38,9 @@ gn_args = {
 }
 
 if platform.system() in ("Linux",):
-    gn_args["is_clang"] = "false"
+    gn_args["v8_static_library"] = "true"
+    gn_args["v8_monolithic_for_shared_library"] = "true"
+    gn_args["target_cpu"] = '"x64"'
 
 source_files = [
     "Exception.cpp",
