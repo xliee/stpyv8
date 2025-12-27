@@ -26,6 +26,7 @@ gn_args = {
     "treat_warnings_as_errors": "false",
     "use_clang_modules": "false",
     "use_custom_libcxx": "false",
+    "use_sysroot": "true" if platform.system() in ("Linux",) else "false",
     "v8_deprecation_warnings": "true",
     "v8_enable_disassembler": "false",
     "v8_enable_i18n_support": "true",
@@ -34,7 +35,9 @@ gn_args = {
     "v8_enable_31bit_smis_on_64bit_arch": "false",
     "v8_imminent_deprecation_warnings": "true",
     "v8_monolithic": "true",
-    "v8_monolithic_for_shared_library": "true",
+    "v8_monolithic_for_shared_library": "false"
+    if platform.system() in ("Windows",)
+    else "true",
     "v8_use_external_startup_data": "false",
 }
 
@@ -122,7 +125,16 @@ if os.name in ("nt",):
         library_dirs.add(os.path.join(os.environ["Python_ROOT_DIR"], "libs"))
 
     libraries += ["winmm", "ws2_32", "Advapi32", "dbghelp", "v8_monolith"]
-    extra_compile_args += ["/O2", "/GL", "/MT", "/EHsc", "/Gy", "/Zi", "/std:c++20", "/Zc:__cplusplus"]
+    extra_compile_args += [
+        "/O2",
+        "/GL",
+        "/MT",
+        "/EHsc",
+        "/Gy",
+        "/Zi",
+        "/std:c++20",
+        "/Zc:__cplusplus",
+    ]
     extra_link_args += ["/DLL", "/OPT:REF", "/OPT:ICF", "/MACHINE:X64"]
     macros += [
         ("HAVE_SNPRINTF", None),
