@@ -7,7 +7,7 @@ DEPOT_HOME = os.environ.get("DEPOT_HOME", os.path.join(STPYV8_HOME, "depot_tools
 V8_HOME = os.environ.get("V8_HOME", os.path.join(STPYV8_HOME, "v8"))
 
 V8_GIT_URL = "https://chromium.googlesource.com/v8/v8.git"
-V8_GIT_TAG_STABLE = "14.3.127.17"
+V8_GIT_TAG_STABLE = "14.4.258.13"
 V8_GIT_TAG_MASTER = "master"
 V8_GIT_TAG = V8_GIT_TAG_STABLE
 DEPOT_GIT_URL = "https://chromium.googlesource.com/chromium/tools/depot_tools.git"
@@ -34,13 +34,10 @@ gn_args = {
     "v8_enable_31bit_smis_on_64bit_arch": "false",
     "v8_imminent_deprecation_warnings": "true",
     "v8_monolithic": "true",
+    "v8_monolithic_for_shared_library": "true",
     "v8_use_external_startup_data": "false",
 }
 
-if platform.system() in ("Linux",):
-    gn_args["v8_static_library"] = "true"
-    gn_args["v8_monolithic_for_shared_library"] = "true"
-    gn_args["use_sysroot"] = "true"
 
 source_files = [
     "Exception.cpp",
