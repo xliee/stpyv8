@@ -156,7 +156,7 @@ elif os.name in ("posix",):
         libraries.append("rt")
         extra_compile_args.append("-std=c++2a")
         extra_compile_args.append("-Wno-comment")
-        extra_compile_args.append("-fuse-ld=lld")
+        extra_compile_args.append("-Wl,--no-crel")
     else:
         extra_compile_args.append("-std=c++20")
         extra_link_args.append("-headerpad_max_install_names")
