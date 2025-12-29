@@ -288,7 +288,7 @@ v8::Intercepted CPythonObject::NamedGetter(v8::Local<v8::Name> prop, const v8::P
 
     CPythonGIL python_gil;
 
-    py::object obj = CJavascriptObject::Wrap(info.Holder());
+    py::object obj = CJavascriptObject::Wrap(info.HolderV2());
     if (PyGen_Check(obj.ptr()))
         CALLBACK_RETURN_HANDLED(v8::Undefined(info.GetIsolate()));
 
@@ -362,7 +362,7 @@ v8::Intercepted CPythonObject::NamedSetter(v8::Local<v8::Name> prop, v8::Local<v
 
     CPythonGIL python_gil;
 
-    py::object obj = CJavascriptObject::Wrap(info.Holder());
+    py::object obj = CJavascriptObject::Wrap(info.HolderV2());
 
     v8::String::Utf8Value name(info.GetIsolate(), prop);
 
@@ -426,7 +426,7 @@ v8::Intercepted CPythonObject::NamedQuery(v8::Local<v8::Name> prop, const v8::Pr
 
     CPythonGIL python_gil;
 
-    py::object obj = CJavascriptObject::Wrap(info.Holder());
+    py::object obj = CJavascriptObject::Wrap(info.HolderV2());
 
     v8::String::Utf8Value name(info.GetIsolate(), prop);
 
@@ -473,7 +473,7 @@ v8::Intercepted CPythonObject::NamedDeleter(v8::Local<v8::Name> prop, const v8::
 
     CPythonGIL python_gil;
 
-    py::object obj = CJavascriptObject::Wrap(info.Holder());
+    py::object obj = CJavascriptObject::Wrap(info.HolderV2());
 
     v8::String::Utf8Value name(info.GetIsolate(), prop);
 
@@ -531,7 +531,7 @@ void CPythonObject::NamedEnumerator(const v8::PropertyCallbackInfo<v8::Array>& i
 
     CPythonGIL python_gil;
 
-    py::object obj = CJavascriptObject::Wrap(info.Holder());
+    py::object obj = CJavascriptObject::Wrap(info.HolderV2());
 
     py::list keys;
     bool filter_name = false;
@@ -597,7 +597,7 @@ v8::Intercepted CPythonObject::IndexedGetter(uint32_t index, const v8::PropertyC
 
     CPythonGIL python_gil;
 
-    py::object obj = CJavascriptObject::Wrap(info.Holder());
+    py::object obj = CJavascriptObject::Wrap(info.HolderV2());
     if (PyGen_Check(obj.ptr()))
         CALLBACK_RETURN_HANDLED(v8::Undefined(info.GetIsolate()));
 
@@ -643,7 +643,7 @@ v8::Intercepted CPythonObject::IndexedSetter(uint32_t index, v8::Local<v8::Value
 
     CPythonGIL python_gil;
 
-    py::object obj = CJavascriptObject::Wrap(info.Holder());
+    py::object obj = CJavascriptObject::Wrap(info.HolderV2());
 
     if (::PySequence_Check(obj.ptr()))
     {
@@ -672,7 +672,7 @@ v8::Intercepted CPythonObject::IndexedQuery(uint32_t index, const v8::PropertyCa
 
     CPythonGIL python_gil;
 
-    py::object obj = CJavascriptObject::Wrap(info.Holder());
+    py::object obj = CJavascriptObject::Wrap(info.HolderV2());
 
     if (PyGen_Check(obj.ptr()))
         CALLBACK_RETURN_HANDLED(v8::Integer::New(info.GetIsolate(), v8::ReadOnly));
@@ -717,7 +717,7 @@ v8::Intercepted CPythonObject::IndexedDeleter(uint32_t index, const v8::Property
 
     CPythonGIL python_gil;
 
-    py::object obj = CJavascriptObject::Wrap(info.Holder());
+    py::object obj = CJavascriptObject::Wrap(info.HolderV2());
 
     if (::PySequence_Check(obj.ptr()) && (Py_ssize_t) index < ::PySequence_Size(obj.ptr()))
     {
@@ -744,7 +744,7 @@ void CPythonObject::IndexedEnumerator(const v8::PropertyCallbackInfo<v8::Array>&
 
     CPythonGIL python_gil;
 
-    py::object obj = CJavascriptObject::Wrap(info.Holder());
+    py::object obj = CJavascriptObject::Wrap(info.HolderV2());
 
     Py_ssize_t len = ::PySequence_Check(obj.ptr()) ? ::PySequence_Size(obj.ptr()) : 0;
 
