@@ -40,8 +40,8 @@ jobs:
             v8\out.gn\x64.release.sample\icudtl.dat
             v8\include
           key: windows-build-v8-${{ hashFiles('v8/src/**') }}
-      # - name: Initialize MSVC environment
-      # uses: ilammy/msvc-dev-cmd@v1
+      - name: Initialize MSVC environment
+        uses: ilammy/msvc-dev-cmd@v1
       #  if: ${{ steps.restore-v8.outputs.cache-hit != 'true' }}
       #  with:
       #    toolset: 14.2
@@ -93,8 +93,8 @@ jobs:
         with:
           path: ${{ env.BOOST_ROOT }}\stage\lib
           key: boost-${{ matrix.boost-version }}-python${{ matrix.python-version }}-vc142
-      #- name: Initialize MSVC environment
-      #  uses: ilammy/msvc-dev-cmd@v1
+      - name: Initialize MSVC environment
+        uses: ilammy/msvc-dev-cmd@v1
       #  if: ${{ steps.restore-boost.outputs.cache-hit != 'true' }}
       #  with:
       #    toolset: ${{ env.MSVC_TOOLSET_VERSION }}
