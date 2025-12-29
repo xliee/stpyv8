@@ -19,7 +19,7 @@ v8_deps_linux = os.environ.get("V8_DEPS_LINUX", "1") in ("1",)
 os.environ["PATH"] = f"{os.environ.get('PATH', '')}:{DEPOT_HOME}"
 
 gn_args = {
-    "clang_use_chrome_plugin": "false",
+    "clang_use_chrome_plugins": "false",
     "dcheck_always_on": "false",
     "enable_rust": "false",
     "is_clang": "true",
@@ -166,7 +166,6 @@ elif os.name in ("posix",):
         libraries.append("rt")
         extra_compile_args.append("-std=c++2a")
         extra_compile_args.append("-Wno-comment")
-        extra_compile_args.append("-Wl,--no-crel")
     else:
         extra_compile_args.append("-std=c++20")
         extra_link_args.append("-headerpad_max_install_names")
