@@ -62,6 +62,7 @@ jobs:
     needs: build-v8
     runs-on: ${{ matrix.os }}
     env:
+      ARCH: arm64
       DIST_NAME: stpyv8-linux-py${{ matrix.python-version }}
       STPYV8_BOOST_PYTHON: boost_python${{ matrix.python-version }}
     strategy:
@@ -70,8 +71,6 @@ jobs:
         python-version: ['3.9', '3.10', '3.11', '3.12', '3.13', '3.14']
         boost-version: [1.90.0]
         boost-version-snake: ['1_90_0']
-    env:
-      ARCH: arm64
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
