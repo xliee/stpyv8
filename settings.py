@@ -48,6 +48,11 @@ gn_args = {
     "v8_use_external_startup_data": "false",
 }
 
+if platform.system() in ("Linux", ):
+    gn_args["is_clang"] = "false"
+    gn_args["use_lld"] = "false"
+    gn_args["use_gold"] = "false"
+
 
 source_files = [
     "Exception.cpp",

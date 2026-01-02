@@ -63,8 +63,6 @@ jobs:
     needs: build-v8
     runs-on: ${{ matrix.os }}
     env:
-      CC: clang
-      CXX: clang++
       DIST_NAME: stpyv8-linux-py${{ matrix.python-version }}
       STPYV8_BOOST_PYTHON: boost_python${{ matrix.python-version }}
     strategy:
