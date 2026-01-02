@@ -49,7 +49,6 @@ gn_args = {
 }
 
 if platform.system() in ("Linux", ):
-    gn_args["is_clang"] = "false"
     gn_args["use_lld"] = "false"
     gn_args["use_gold"] = "false"
 
