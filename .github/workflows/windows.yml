@@ -76,7 +76,7 @@ jobs:
       matrix:
         os: [windows-latest]
         platform: [x64]
-        python-version: ['3.9', '3.10', '3.11', '3.12', '3.13', '3.14']
+        python-version: ['3.14']
         boost-version: [1.90.0]
         boost-version-snake: ['1_90_0']
     steps:
